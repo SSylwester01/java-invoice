@@ -133,4 +133,17 @@ public class InvoiceTest {
         Assert.assertTrue(invoice.getNumber()>0);
     }
 
+
+    @Test
+    public void testPrintInvoice() {
+        Invoice invoice = new Invoice();
+        invoice.addProduct(new TaxFreeProduct("Chleb", new BigDecimal("5")), 2);
+
+        String result = invoice.print();
+
+        Assert.assertTrue(result.contains("Chleb"));
+        Assert.assertTrue(result.contains("Liczba pozycji: 1"));
+    }
+
+
 }

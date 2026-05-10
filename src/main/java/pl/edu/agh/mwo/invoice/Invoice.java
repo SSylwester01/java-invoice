@@ -30,6 +30,27 @@ public class Invoice {
         products.put(product, quantity);
     }
 
+    public String print() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Invoice nr ").append(number).append("\n");
+        int count = 0;
+        for (Product product : products.keySet()) {
+            Integer quantity = products.get(product);
+            sb.append(product.getName())
+                    .append(", ")
+                    .append(quantity)
+                    .append(", ")
+                    .append(product.getPrice())
+                    .append("\n");
+            count++;
+        }
+        sb.append("Liczba pozycji: ").append(count);
+        return sb.toString();
+    }
+
+
+
+
     public BigDecimal getNetTotal() {
         BigDecimal totalNet = BigDecimal.ZERO;
         for (Product product : products.keySet()) {
