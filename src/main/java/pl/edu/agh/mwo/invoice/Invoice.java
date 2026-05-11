@@ -24,10 +24,31 @@ public class Invoice {
     }
 
     public void addProduct(Product product, Integer quantity) {
-        if (product == null || quantity <= 0) {
-            throw new IllegalArgumentException();
+
+        if (product == null) {
+
+            throw new IllegalArgumentException("Product cannot be null");
+
         }
-        products.put(product, quantity);
+
+        if (quantity == null || quantity <= 0) {
+
+            throw new IllegalArgumentException("Quantity must be positive");
+
+        }
+
+        if (products.containsKey(product)) {
+
+            Integer currentQuantity = products.get(product);
+
+            products.put(product, currentQuantity + quantity);
+
+        } else {
+
+            products.put(product, quantity);
+
+        }
+
     }
 
     public String print() {

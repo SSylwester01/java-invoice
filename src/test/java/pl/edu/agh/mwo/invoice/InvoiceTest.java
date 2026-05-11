@@ -146,4 +146,17 @@ public class InvoiceTest {
     }
 
 
+    @Test
+
+    public void testDuplicateProductsIncreaseQuantity() {
+        Invoice invoice = new Invoice();
+        Product product = new TaxFreeProduct("Kubek", new BigDecimal("10"));
+        invoice.addProduct(product);
+        invoice.addProduct(product);
+        Assert.assertThat(new BigDecimal("20"),
+                Matchers.comparesEqualTo(invoice.getNetTotal()));
+
+    }
+
+
 }
